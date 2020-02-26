@@ -1,9 +1,10 @@
 <p align="center">
   <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo_text.svg" width="320" alt="Nest Logo" /></a>
 </p>
-
  
-<p align="center">A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.</p>
+<p align="center">
+  A progressive <a href="http://nodejs.org" target="blank">Node.js</a> framework for building efficient and scalable server-side applications, heavily inspired by <a href="https://angular.io" target="blank">Angular</a>.
+</p>
 
 # Code Challenge Grupo ZAP - Backend
 
@@ -17,7 +18,7 @@ This is the [Backend Code Challenge](https://grupozap.github.io/cultura/challeng
 
 **A big part of the requirements are already available in the [eng-zap-challenge-frontend](https://github.com/julianomacielferreira/eng-zap-challenge-frontend/blob/master/README.md#description) repository.**
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+This project was generated with [Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## The current business rules are as follows:
 
