@@ -1,13 +1,28 @@
 version: "3.7"
 
-services:
-  example:
-    container_name: eng-zap-challenge-backend
-    build:
-      context: .
-      dockerfile: Dockerfile
-    volumes:
-      - ".:/backend"
-      - "/backend/node_modules"
-    ports:
-      - "3000:3000"
+services:  
+  # @TODO - Remove comment on Production
+  # webapp:
+  #   container_name: eng-zap-challenge-backend
+  #   build:
+  #     context: .
+  #     dockerfile: Dockerfile
+  #   volumes:
+  #     - '.:/backend'
+  #     - '/backend/node_modules'
+  #   ports:
+  #     - '3000:3000'
+  
+  database:
+      image: 'mongo'
+      container_name: 'eng-zap-challenge-backend-mongodb'
+      environment:
+          - MONGO_INITDB_DATABASE=eng-zap-challenge
+          - MONGO_INITDB_ROOT_USERNAME=root
+          - MONGO_INITDB_ROOT_PASSWORD=password
+      volumes:
+          - ./init-mongodb.js:/docker-entrypoint-initdb.d/init-mongodb.js:ro
+          - ./docker/data/mongodb:/data/db
+      ports:
+          - '27017-27019:27017-27019'
+
