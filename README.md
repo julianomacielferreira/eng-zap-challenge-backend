@@ -140,6 +140,21 @@ Stop the container before moving on:
 $ docker-compose stop
 ```
 
+# Import data into MongoDB
+
+Login in the container:
+
+```bash
+$ docker exec -it eng-zap-challenge-backend-mongodb bash
+```
+
+Execute the **mongoimport** import command:
+
+```bash
+$ mongoimport -u eng-zap-challenge -p password --authenticationDatabase eng-zap-challenge --db eng-zap-challenge --collection properties --jsonArray --file /data/backup-mongodb.json
+```
+
+
 ## Support
 
 Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
@@ -153,6 +168,8 @@ Nest is an MIT-licensed open source project. It can grow thanks to the sponsors 
 - Node.js: [https://nodejs.org/](https://nodejs.org/)
 
 - Axios - Promise based HTTP client for the browser and node.js: https://github.com/axios/axios](https://github.com/axios/axios)
+
+- MongoDB - [https://www.mongodb.com/](https://www.mongodb.com/)  
 
 - Code Challenge Grupo ZA: [https://grupozap.github.io/cultura/challenges/engineering.html](https://grupozap.github.io/cultura/challenges/engineering.html)
 
