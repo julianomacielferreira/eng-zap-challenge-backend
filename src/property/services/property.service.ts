@@ -30,7 +30,7 @@ import { Property } from '../models/property';
 @Injectable()
 export class PropertyService {
   constructor(
-    @InjectModel('Property') private readonly propertyModel: Model<Property>,
+    @InjectModel('Property') private readonly propertyModel: Model<Property>
   ) {}
 
   public async listProperties(): Promise<Property[]> {
