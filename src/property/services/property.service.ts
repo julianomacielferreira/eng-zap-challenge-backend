@@ -34,7 +34,6 @@ export class PropertyService {
   ) {}
 
   public async listProperties(): Promise<Property[]> {
-    
     return await this.propertyModel.find().exec();
   }
 }

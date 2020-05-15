@@ -34,7 +34,7 @@ export const PropertySchema = new mongoose.Schema({
     geoLocation: {
       precision: String,
       location: {
-        lon:  Number,
+        lon: Number,
         lat: Number,
       },
     },
@@ -48,5 +48,5 @@ export const PropertySchema = new mongoose.Schema({
     rentalTotalPrice: { type: String, required: false },
     businessType: { type: String, required: false },
     monthlyCondoFee: { type: String, required: false },
-  }
+  },
 });
