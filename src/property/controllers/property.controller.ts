@@ -21,21 +21,16 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Test, TestingModule } from '@nestjs/testing';
-import { PropertyService } from './property.service';
+import { Controller, Get } from '@nestjs/common';
+import { PropertyService } from '../services/property.service';
+import { Property } from '../models/property';
 
-describe('PropertyService', () => {
-  let service: PropertyService;
+@Controller('property')
+export class PropertyController {
+  constructor(private readonly propertyService: PropertyService) {}
 
-  beforeEach(async () => {
-    const module: TestingModule = await Test.createTestingModule({
-      providers: [PropertyService],
-    }).compile();
-
-    service = module.get<PropertyService>(PropertyService);
-  });
-
-  it('should be defined', () => {
-    expect(service).toBeDefined();
-  });
-});
+  @Get()
+  public async listAll(): Promise<Array<Property>> {
+    return this.propertyService.listProperties();
+  }
+}

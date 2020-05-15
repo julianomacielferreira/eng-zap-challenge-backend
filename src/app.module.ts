@@ -30,7 +30,7 @@ import { PropertyModule } from './property/property.module';
 @Module({
   imports: [
     MongooseModule.forRoot(
-      'mongodb://eng-zap-challenge:password@database:27017/eng-zap-challenge',
+      'mongodb://eng-zap-challenge:password@localhost:27017/eng-zap-challenge',
     ),
     PropertyModule,
   ],

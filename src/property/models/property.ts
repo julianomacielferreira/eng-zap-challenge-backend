@@ -23,62 +23,55 @@
  */
 import * as mongoose from 'mongoose';
 
-export const PropertySchema = new mongoose.Schema({
-  id: String,
-  usableAreas: Number,
-  parkingSpaces: Number,
-  images: [],
-  address: {
-    city: String,
-    neighborhood: String,
+export class Property extends mongoose.Document {
+  public id: string;
+  public usableAreas: number;
+  public parkingSpaces: number;
+  public images: string[];
+  public address: {
+    city: string;
+    neighborhood: string;
     geoLocation: {
-      precision: String,
+      precision: string;
       location: {
-        lon: Number,
-        lat: Number,
-      },
-    },
-  },
-  bathrooms: Number,
-  bedrooms: Number,
-  pricingInfos: {
-    period: { type: String, required: false },
-    yearlyIptu: { type: String, required: false },
-    price: { type: String, required: false },
-    rentalTotalPrice: { type: String, required: false },
-    businessType: { type: String, required: false },
-    monthlyCondoFee: { type: String, required: false },
-  },
-});
-
-export class Property {
-  constructor(
-    public id: string,
-    public usableAreas: number,
-    public parkingSpaces: number,
-    public images: string[],
-    public address: {
-      city: string;
-      neighborhood: string;
-      geoLocation: {
-        precision: string;
-        location: {
-          lon: number;
-          lat: number;
-        };
+        lon: number;
+        lat: number;
       };
-    },
-    public bathrooms: number,
-    public bedrooms: number,
-    public pricingInfos: {
-      period?: string | undefined;
-      yearlyIptu: string | undefined;
-      price: string | undefined;
-      rentalTotalPrice?: string | undefined;
-      businessType: string | undefined;
-      monthlyCondoFee: string | undefined;
-    },
-  ) {}
+    };
+  };
+  public bathrooms: number;
+  public bedrooms: number;
+  public pricingInfos: {
+    period?: string | undefined;
+    yearlyIptu: string | undefined;
+    price: string | undefined;
+    rentalTotalPrice?: string | undefined;
+    businessType: string | undefined;
+    monthlyCondoFee: string | undefined;
+  };
+
+  constructor(private property?: any) {
+    super();
+
+    if (property !== undefined) {
+      // Not all Json properties are necessary
+      (this.id = property.id),
+        (this.usableAreas = property.usableAreas),
+        (this.parkingSpaces = property.parkingSpaces),
+        (this.images = property.images),
+        (this.address = property.address),
+        (this.bathrooms = property.bathrooms),
+        (this.bedrooms = property.bedrooms),
+        (this.pricingInfos = {
+          period: property.pricingInfos.period,
+          yearlyIptu: property.pricingInfos.yearlyIptu,
+          price: property.pricingInfos.price,
+          rentalTotalPrice: property.pricingInfos.rentalTotalPrice,
+          businessType: property.pricingInfos.businessType,
+          monthlyCondoFee: property.pricingInfos.monthlyCondoFee,
+        });
+    }
+  }
 
   public isRentPropertiesForZAP(): boolean {
     // When renting and at least the amount is $3,500.00.
@@ -188,7 +181,8 @@ export class Property {
     return (
       location.lon >= MIN_LONGITUDE &&
       location.lon <= MAX_LONGITUDE &&
-      location.lat >= MIN_LATITUDE && location.lat <= MAX_LATITUDE
+      location.lat >= MIN_LATITUDE &&
+      location.lat <= MAX_LATITUDE
     );
   }
 

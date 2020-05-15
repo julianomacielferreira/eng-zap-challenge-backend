@@ -21,12 +21,32 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Controller, Get } from '@nestjs/common';
+import * as mongoose from 'mongoose';
 
-@Controller('property')
-export class PropertyController {
-  @Get()
-  public listAll(): string {
-    return 'Lista All Properties using PropertyService';
+export const PropertySchema = new mongoose.Schema({
+  id: String,
+  usableAreas: Number,
+  parkingSpaces: Number,
+  images: [],
+  address: {
+    city: { type: String, required: false },
+    neighborhood: { type: String, required: false },
+    geoLocation: {
+      precision: String,
+      location: {
+        lon:  Number,
+        lat: Number,
+      },
+    },
+  },
+  bathrooms: Number,
+  bedrooms: Number,
+  pricingInfos: {
+    period: { type: String, required: false },
+    yearlyIptu: { type: String, required: false },
+    price: { type: String, required: false },
+    rentalTotalPrice: { type: String, required: false },
+    businessType: { type: String, required: false },
+    monthlyCondoFee: { type: String, required: false },
   }
-}
+});

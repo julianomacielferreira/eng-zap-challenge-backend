@@ -21,7 +21,21 @@
  * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  * THE SOFTWARE.
  */
-import { Injectable } from '@nestjs/common';
+import { Test, TestingModule } from '@nestjs/testing';
+import { PropertyService } from '../services/property.service';
 
-@Injectable()
-export class PropertyService {}
+describe('PropertyService', () => {
+  let service: PropertyService;
+
+  beforeEach(async () => {
+    const module: TestingModule = await Test.createTestingModule({
+      providers: [PropertyService],
+    }).compile();
+
+    service = module.get<PropertyService>(PropertyService);
+  });
+
+  it('should be defined', () => {
+    expect(service).toBeDefined();
+  });
+});
